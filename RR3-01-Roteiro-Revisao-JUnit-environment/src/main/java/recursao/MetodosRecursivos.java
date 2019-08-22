@@ -69,19 +69,18 @@ public class MetodosRecursivos {
 		} else {
 			result = razao + progressaoAritmetica(termoInicial, razao, n-1);
 		}
-		// TODO IMPLEMENTE SEU CODIGO (USANDO RECURSAO) DE ENCONTRAR O n-ESIMO
-		// TERMO
-		// DA PROGRESSAO ARITMETICA, DADO O TERMO INICIAL E A RAZAO
+		
 		return result;
 	}
-
+///////////////////////////////////////////////////////////////////////////////////////
 	public double progressaoGeometrica(double termoInicial, double razao, int n) {
 		double result = 1;
-		// TODO IMPLEMENTE SEU CODIGO (USANDO RECURSAO) DE ENCONTRAR O n-ESIMO
-		// TERMO
-		// DA PROGRESSAO GEOMETRICA, DADO O TERMO INICIAL E A RAZAO
+		
+		if(n == 1) {
+			result = termoInicial * razao;
+		} else {
+			result = progressaoGeometrica(termoInicial*razao, razao, n-1);
+		}
 		return result;
 	}
-	
-	
 }
