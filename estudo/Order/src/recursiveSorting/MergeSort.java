@@ -1,4 +1,4 @@
-package alg;
+package recursiveSorting;
 
 import util.Util;
 

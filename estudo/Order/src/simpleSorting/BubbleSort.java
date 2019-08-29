@@ -1,4 +1,4 @@
-package alg;
+package simpleSorting;
 
 import util.Util;
 
