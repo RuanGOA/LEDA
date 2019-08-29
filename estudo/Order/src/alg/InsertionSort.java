@@ -15,11 +15,11 @@ public class InsertionSort {
 			
 			int j = i - 1;
 			while(j >= 0 && vetor[j] > selecionado) {
-				vetor[j + 1] = vetor[j];
+				vetor[j + 1] = vetor[j]; //vai trocando ate achar um caso que nao e
 				j--;
 			}
 			
-			vetor[j + 1] = selecionado;
+			vetor[j + 1] = selecionado; //quando ele para, foi a posicao anterior...
 		}
 		
 		util.exibir(vetor);
