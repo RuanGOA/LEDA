@@ -15,40 +15,62 @@ public class FloorCeilBinarySearch implements FloorCeil {
 
 	@Override
 	public Integer floor(Integer[] array, Integer x) {
-		int l = 0;
-		int r = array.length - 1;
-		while(l <= r) {
-			int mid = (l + r)/2;
-			if(array[mid] >= x) r = mid - 1;
-			else if(array[mid] < x) l = mid - 1;
+		Integer result = null;
+		
+		if(array.length > 0) {
+			if(x > array[array.length - 1]) {
+				result = array[array.length - 1];
+			} else result = auxFloor(x, array, 0, array.length - 1); 	
 		}
 		
-		if(array[l] == x) {
-			return null;
-		} else return array[l];
+		return result;
+	}
+	
+	private Integer auxFloor(Integer x, Integer[] vet, int l, int r) {
+		Integer result = null;
+		if(l <= r) {
+			int mid = (l + r)/2;
+			if(x.equals(vet[mid])) {
+				result = x;
+			} else if(x < vet[mid]) {
+				if(mid - 1 >= 0 && vet[mid - 1] < x) {
+					result = vet[mid - 1];
+				} else result = auxFloor(x, vet, l, mid - 1);
+			} else {
+				result = auxFloor(x, vet, mid + 1, r);
+			}
+		}
+			
+		return result;
 	}
 
 	@Override
 	public Integer ceil(Integer[] array, Integer x) {
-		int l = 0;
-		int r = array.length - 1;
-		while(l <= r) {
-			int mid = (l + r)/2;
-			if(array[mid] > x) r = mid - 1;
-			else if(array[mid] <= x) l = mid + 1;
+		Integer result = null;
+		if(array.length > 0) {
+			if(x < array[0]) {
+				result = array[0];
+			} else if(x > array[array.length - 1]) {
+			} else result = auxCeil(x, array, 0, array.length - 1);
 		}
 		
-		if(array[l] == x) {
-			return null;
-		} else return array[l];
+		return result;
 	}
-
-	public static void main(String args[]) {
+	
+	private Integer auxCeil(Integer x, Integer[] vet, int l, int r) {
+		Integer result = null;
+		if(l <= r) {
+			int mid = (l + r)/2;
+			if(x.equals(vet[mid])) {
+				result = x;
+			} else if(x > vet[mid]) {
+				if(mid + 1 <= vet.length - 1 && vet[mid + 1] > x) result = vet[mid + 1];
+				else result = auxCeil(x, vet, mid + 1 , r);
+			} else {
+				result = auxCeil(x, vet, l, mid - 1);				
+			}
+		}
 		
-		FloorCeilBinarySearch bs = new FloorCeilBinarySearch();
-		Integer[] array = new Integer[] {1, 2, 3, 4, 5, 6, 7, 7, 7, 8, 9, 10};
-		
-		System.out.println(bs.ceil(array, 7));
-		System.out.println(bs.floor(array, 7));
+		return result;
 	}
 }
