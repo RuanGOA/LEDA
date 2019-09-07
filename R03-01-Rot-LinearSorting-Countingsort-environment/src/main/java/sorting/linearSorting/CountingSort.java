@@ -12,32 +12,49 @@ public class CountingSort extends AbstractSorting<Integer> {
 
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
-		if(leftIndex > -1 && rightIndex < array.length && leftIndex < rightIndex) {
+		if(isValid(array, leftIndex, rightIndex)) {
 			
-			int max = array[leftIndex];
+			Integer max = array[leftIndex];
 			
 			for(int i = leftIndex + 1; i <= rightIndex; i++) {
 				if(array[i] > max) max = array[i];
 			}
 			
-			int[] arrAux = new int[max + 1];
+			Integer[] arrCont = new Integer[max + 2];
+			
+			for(int i = 0; i < arrCont.length; i++)
+				arrCont[i] = 0;
 			
 			for(int i = leftIndex ; i <= rightIndex; i++) {
-				arrAux[array[i]]++;
+				arrCont[array[i]]++;
 			}
 			
-			for(int i = leftIndex + 1; i < max; i++) {
-				arrAux[i] += arrAux[i - 1];
+			for(int i = 1; i < arrCont.length; i++) {
+				arrCont[i] += arrCont[i - 1];
 			}
 			
-			int[] arrRep = new int[array.length];
-			for(int i = array.length - 1; i > -1; i--) {
-				arrRep[arrAux[array[i]]--] = array[i];
+			Integer[] arrRep = new Integer[array.length];
+			for(int i = rightIndex; i >= leftIndex; i--) {
+				arrRep[--arrCont[array[i]]] = array[i];
 			}
 			
 			for(int i = leftIndex; i <= rightIndex; i++) {
 				array[i] = arrRep[i];
 			}
 		}
+	}
+	
+	private boolean isValid(Integer[] array, int leftIndex, int rightIndex) {
+		boolean valid = true;
+		
+		if(array == null || array.length == 0) {
+			valid = false;
+		} else if((leftIndex < 0) || (leftIndex >= rightIndex) || (rightIndex <= 0)) {
+			valid = false;
+		} else if((leftIndex >= array.length) || (rightIndex > array.length - 1)) {
+			valid = false;
+		}
+		
+		return valid;
 	}
 }

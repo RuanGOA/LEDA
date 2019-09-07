@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import sorting.AbstractSorting;
 import sorting.linearSorting.CountingSort;
+import sorting.linearSorting.ExtendedCountingSort;
 
 public class StudentSortingTest {
 
@@ -98,6 +99,12 @@ public class StudentSortingTest {
 	public void testSort05() {
 		genericTest(vetorValoresRepetidos);
 	}
+	
+	/*@Test
+	public void testSort06() {
+		Integer[] vet = new Integer[] {1, 5, 2, -4, -2, 9, 7, 3};
+		genericTest(vet);
+	}*/
 
 	// MÉTODOS QUE OS ALUNOS PODEM CRIAR
 	/**
