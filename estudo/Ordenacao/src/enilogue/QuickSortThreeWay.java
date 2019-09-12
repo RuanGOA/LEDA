@@ -7,10 +7,10 @@ public class QuickSortThreeWay {
 	static Util util = new Util();
 	
 	public QuickSortThreeWay(int[] vetor) {
-		quickSortThree(vetor, 0, vetor.length - 1);
+		sort(vetor, 0, vetor.length - 1);
 	}
 	
-	private void quickSortThree(int[] vet, int left, int right) {
+	private void sort(int[] vet, int left, int right) {
 		if(left < right) {
 			int l = left;
 			int i = left + 1;
@@ -24,8 +24,8 @@ public class QuickSortThreeWay {
 				else i++;
 			}
 			
-			quickSortThree(vet, left, l - 1);
-			quickSortThree(vet, l + 1, right);
+			sort(vet, left, l - 1);
+			sort(vet, l + 1, right);
 		}
 										
 	}
