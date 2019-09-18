@@ -52,9 +52,9 @@ public class QueueImpl<T> implements Queue<T> {
 	public T dequeue() throws QueueUnderflowException {
 		T result = null;
 		if(tail > -1) {
-			tail--;
 			result = this.array[0];
 			shiftLeft();
+			tail--;
 		} else throw new QueueUnderflowException();
 		
 		return result;

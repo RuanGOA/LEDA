@@ -32,9 +32,9 @@ public class StudentQueueTest {
 
 	private void getImplementations() {
 		// TODO O aluno deve ajustar aqui para instanciar sua implementação
-		queue1 = new QueueImpl<>(4);
-		queue2 = new QueueImpl<>(2);
-		queue3 = new QueueImpl<>(0);
+		queue1 = new QueueImpl<Integer>(4);
+		queue2 = new QueueImpl<Integer>(2);
+		queue3 = new QueueImpl<Integer>(0);
 	}
 
 	// MÉTODOS DE TESTE
@@ -59,31 +59,51 @@ public class StudentQueueTest {
 		try {
 			queue1.enqueue(new Integer(5));
 		} catch (QueueOverflowException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 
-	@Test(expected = QueueOverflowException.class)
-	public void testEnqueueComErro() throws QueueOverflowException {
-		queue1.enqueue(new Integer(5)); // vai depender do tamanho que a fila
-										// foi iniciada!!!
+	@Test
+	public void testEnqueueComErro() {
+		try {
+			queue1.enqueue(5); 		
+
+		} catch(QueueOverflowException e) {}
 	}
 
 	@Test
 	public void testDequeue() {
 		try {
 			assertEquals(new Integer(1), queue1.dequeue());
-		} catch (QueueUnderflowException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (QueueUnderflowException e) {}
 	}
 
-	@Test(expected = QueueUnderflowException.class)
+	@Test
 	public void testDequeueComErro() throws QueueUnderflowException {
-		assertEquals(new Integer(1), queue1.dequeue()); // vai depender do
-														// tamanho que a fial
-														// foi iniciada!!!
+		try {
+			assertEquals(new Integer(1), queue1.dequeue()); // vai depender do						
+		} catch(QueueUnderflowException e) {}
+	}
+	
+	@Test
+	public void testGenericoRandom() throws QueueUnderflowException, QueueOverflowException {
+		assertEquals(new Integer(1), queue1.dequeue());
+		assertEquals(new Integer(2), queue1.dequeue());
+		assertEquals(new Integer(3), queue1.dequeue());
+		
+		try {
+			assertEquals(new Integer(0), queue1.dequeue());
+		} catch(QueueUnderflowException e) {}
+		
+		queue1.enqueue(1);
+		queue1.enqueue(2);
+		queue1.enqueue(3);
+		assertEquals(new Integer(1), queue1.dequeue());
+		queue1.enqueue(1);
+		queue1.enqueue(4);
+		assertEquals(new Integer(2), queue1.dequeue());
+		assertEquals(new Integer(3), queue1.head());
+		assertEquals(new Integer(3), queue1.dequeue());
+		assertEquals(new Integer(1), queue1.dequeue());
+		assertEquals(new Integer(4), queue1.dequeue());
 	}
 }

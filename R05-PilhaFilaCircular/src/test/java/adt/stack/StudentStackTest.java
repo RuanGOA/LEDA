@@ -64,25 +64,45 @@ public class StudentStackTest {
 		}
 	}
 
-	@Test(expected = StackOverflowException.class)
+	@Test
 	public void testPushComErro() throws StackOverflowException {
-		stack1.push(new Integer(5)); // levanta excecao apenas se o tamanhonao
-										// permitir outra insercao
+		try {
+			stack1.push(new Integer(5));			
+		} catch(StackOverflowException e) {}
 	}
 
 	@Test
 	public void testPop() {
 		try {
 			assertEquals(new Integer(3), stack1.pop());
-		} catch (StackUnderflowException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (StackUnderflowException e) {}
 	}
 
-	@Test(expected = StackUnderflowException.class)
+	@Test
 	public void testPopComErro() throws StackUnderflowException {
-		assertEquals(new Integer(3), stack1.pop()); // levanta excecao apenas se
-													// stack1 for vazia
+		try {
+			assertEquals(new Integer(3), stack1.pop());			
+		} catch(StackUnderflowException e) {}
+	}
+	
+	@Test
+	public void testGenericoRandomPraBateria() throws StackUnderflowException, StackOverflowException {
+		assertEquals(new Integer(3), stack1.pop());
+		assertEquals(new Integer(2), stack1.pop());
+		assertEquals(new Integer(1), stack1.pop());
+		stack1.push(1);
+		stack1.push(2);
+		stack1.push(3);
+		assertEquals(new Integer(3), stack1.pop());
+		stack1.push(1);
+		assertEquals(new Integer(1), stack1.pop());
+		assertEquals(new Integer(2), stack1.pop());
+		assertEquals(new Integer(1), stack1.pop());
+		stack1.push(1);
+		stack1.push(2);
+		stack1.push(3);
+		try {
+			stack1.push(1);
+		} catch(StackOverflowException e) {}
 	}
 }
