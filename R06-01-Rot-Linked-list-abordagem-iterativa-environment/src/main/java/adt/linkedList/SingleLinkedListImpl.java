@@ -17,7 +17,7 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	public int size() {
 		int cont = 0;
 		if(!isEmpty()) {
-			SingleLinkedListNode node = new SingleLinkedListNode<T>();
+			SingleLinkedListNode node = this.head;
 			while(!node.isNIL()) {
 				cont++;
 				node = node.next;
@@ -30,7 +30,7 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	public T search(T element) {
 		T resultado = null;
 		if(!isEmpty()) {
-			SingleLinkedListNode node = new SingleLinkedListNode<T>();
+			SingleLinkedListNode node = this.head;
 			while(!node.isNIL()) {
 				if(node.data.equals(element)) {
 					resultado = (T) node.data;
@@ -44,8 +44,17 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented!");
+		if(isEmpty()) {
+			this.head.setData(element);
+			this.head.setNext(new SingleLinkedListNode<T>());
+		} else {
+			SingleLinkedListNode node = this.head;
+			while(!node.isNIL()) {
+				node = node.next;
+			}
+			node.setData(element);
+			node.setNext(new SingleLinkedListNode<T>());
+		}
 	}
 
 	@Override
