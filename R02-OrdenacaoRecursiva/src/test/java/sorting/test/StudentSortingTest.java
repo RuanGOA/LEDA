@@ -23,7 +23,7 @@ public class StudentSortingTest {
 
 	@Before
 	public void setUp() {
-		populaVetorTamanhoPar(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23,
+		populaVetorTamanhoPar(new Integer[] {30, 30, 30, 30, 30, 30, 30, 7, 29, 11, 26, 4, 22, 23,
 				31 });
 		populaVetorTamanhoImpar(new Integer[] { 6, 41, 32, 7, 26, 4, 37, 49,
 				11, 18, 36 });
@@ -41,7 +41,7 @@ public class StudentSortingTest {
 	private void getImplementation() {
 		// TODO O aluno deve instanciar sua implementação abaixo ao invés de
 		// null
-		this.implementation = new QuickSort();
+		this.implementation = new MergeSort();
 	}
 
 	public void populaVetorTamanhoPar(Integer[] arrayPadrao) {

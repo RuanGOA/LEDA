@@ -33,20 +33,20 @@ public class ThreeWayQuickSort<T extends Comparable<T>> extends
 		if(left < right) {
 			int l = left;
 			int i = left;
-			int r = right;
+			int j = right;
 			T pivot = v[left];
 			
-			while(i <= r) {
+			while(i <= j) {
 				if(v[i].compareTo(pivot) < 0) {
 					Util.swap(v, l++, i++);
 				} else if(v[i].compareTo(pivot) > 0) {
-					Util.swap(v, i, r--);
+					Util.swap(v, i, j--);
 				} else {
 					i++;
 				}
 				
 				threeWayQuickSort(v, left, l - 1);
-				threeWayQuickSort(v, r + 1, right);
+				threeWayQuickSort(v, l + 1, right);
 			}
 		}
 	}

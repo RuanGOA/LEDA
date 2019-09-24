@@ -1,5 +1,7 @@
 package adt.linkedList;
 
+import java.util.ArrayList;
+
 public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	protected SingleLinkedListNode<T> head;
@@ -59,14 +61,33 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented!");
+		if(!isEmpty()) {
+			if(this.head.data.equals(element)) {
+				this.head = this.head.next;
+			} else {
+				SingleLinkedListNode node = this.head;
+				while(!node.next.isNIL()) {
+					if(node.next.data.equals(element)) {
+						node.setNext(node.next.next);
+						node.setData(node.next.data);
+					} else node = node.next;
+				}
+			}
+		}
 	}
 
 	@Override
 	public T[] toArray() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented!");
+		ArrayList<T> array = new ArrayList<T>();
+		if(!isEmpty()) {
+			SingleLinkedListNode node = this.head;
+			while(!node.isNIL()) {
+				array.add((T) node.data);
+				node = node.next;
+			}
+		}
+		
+		return (T[]) array.toArray();
 	}
 
 	public SingleLinkedListNode<T> getHead() {

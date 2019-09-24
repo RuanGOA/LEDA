@@ -10,15 +10,13 @@ import sorting.AbstractSorting;
  */
 public class MergeSort<T extends Comparable<T>> extends AbstractSorting<T> {
 	
-	Comparable vS[];
-	
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		this.vS = new Comparable[array.length];
-		mergeSort(array, leftIndex, rightIndex);
+		Comparable[] arrAux = new Comparable[array.length];
+		mergeSor(array, arrAux, leftIndex, rightIndex);
 	}
 	
-	private void mergeSort(T[] v, int leftIndex, int rightIndex) {
+	/*private void mergeSort(T[] v, int leftIndex, int rightIndex) {
 		if(leftIndex < rightIndex) {
 			int mid = (leftIndex + rightIndex)/2;
 		
@@ -39,6 +37,52 @@ public class MergeSort<T extends Comparable<T>> extends AbstractSorting<T> {
 			else if(this.vS[i].compareTo(this.vS[j]) < 0) v[k] = (T) this.vS[i++];
 			else v[k] = (T) this.vS[j++];
 		}		
+	}*/
+	
+	public void mergeSor(T[] arr, Comparable[] arrAux, int left, int right) {
+		if(left < right) {
+			int mid = (left + right)/2;
+			
+			mergeSor(arr, arrAux, left, mid);
+			mergeSor(arr, arrAux, mid + 1, right);
+			
+			merge(arr, arrAux, left, mid, right);			
+		}
 	}
+
+	private void merge(T[] arr, Comparable[] arrAux, int left, int mid, int right) {
+		for(int i = left; i <= right; i++) arrAux[i] = arr[i];
+		
+		int i = left;
+		int j = mid + 1;
+		for(int k = left; k <= right; k++) {
+			if(i > mid) arr[k] = (T) arrAux[j++];
+			else if(j > right) arr[k] = (T) arrAux[i++];
+			else if(arrAux[i].compareTo(arrAux[j]) <= 0) arr[k] = (T) arrAux[i++];
+			else arr[k] = (T) arrAux[j++];
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
