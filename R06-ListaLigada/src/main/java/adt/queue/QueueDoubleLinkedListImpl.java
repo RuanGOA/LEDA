@@ -9,6 +9,7 @@ public class QueueDoubleLinkedListImpl<T> implements Queue<T> {
 	protected DoubleLinkedList<T> list;
 	protected int size;
 
+	
 	public QueueDoubleLinkedListImpl(int size) {
 		this.size = size;
 		this.list = new DoubleLinkedListImpl<T>();

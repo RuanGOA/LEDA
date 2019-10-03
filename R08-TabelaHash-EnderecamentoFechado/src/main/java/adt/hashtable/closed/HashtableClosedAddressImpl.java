@@ -95,10 +95,7 @@ public class HashtableClosedAddressImpl<T> extends
 			
 			if(this.table[pos] != null && ((LinkedList<T>)this.table[pos]).size() > 0) {
 				
-				if(((LinkedList<T>)this.table[pos]).removeFirstOccurrence(element)) {
-					
-					if(((LinkedList<T>)this.table[pos]).size() >= 1) this.COLLISIONS--;
-					
+				if(((LinkedList<T>)this.table[pos]).removeFirstOccurrence(element)) {			
 					this.elements--;
 				}
 			}
