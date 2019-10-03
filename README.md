@@ -4,5 +4,7 @@ Codigos usados na disciplina Laboratório de Estruturas de Dados. Provas, roteir
 
 
 R -> Roteiro
+
 RR -> Roteiro de Revisão
+
 P -> Prova
