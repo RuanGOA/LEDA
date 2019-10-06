@@ -38,7 +38,7 @@ public class StackImpl<T> implements Stack<T> {
 
 	@Override
 	public void push(T element) throws StackOverflowException {
-		if(!(this.top >= this.array.length)) {
+		if(this.top < this.array.length) {
 			this.array[++top] = element;
 		} else throw new StackOverflowException();
 	}
