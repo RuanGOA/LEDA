@@ -17,61 +17,64 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public int size() {
-		int cont = 0;
+		int size = 0;
 		if(!isEmpty()) {
-			SingleLinkedListNode node = this.head;
+			SingleLinkedListNode<T> node = this.head;
+			
 			while(!node.isNIL()) {
-				cont++;
+				size++;
 				node = node.next;
-			}
+			}	
 		}
-		return cont;
+		
+		return size;
 	}
 
 	@Override
 	public T search(T element) {
-		T resultado = null;
-		if(!isEmpty()) {
-			SingleLinkedListNode node = this.head;
-			while(!node.isNIL()) {
+		T result = null;
+		if(!isEmpty() && element != null) {
+			SingleLinkedListNode<T> node = this.head;
+			
+			boolean found = false;
+			while(!node.isNIL() && !found) {
 				if(node.data.equals(element)) {
-					resultado = (T) node.data;
-					break;
+					result = node.data;
+					found = true;
 				} else node = node.next;
 			}
 		}
 		
-		return resultado;
+		return result;
 	}
 
 	@Override
 	public void insert(T element) {
 		if(isEmpty()) {
-			this.head.setData(element);
-			this.head.setNext(new SingleLinkedListNode<T>());
+			this.head.data = element;
+			this.head.next = new SingleLinkedListNode<>();
 		} else {
-			SingleLinkedListNode node = this.head;
+			SingleLinkedListNode<T> node = this.head;
 			while(!node.isNIL()) {
 				node = node.next;
 			}
-			node.setData(element);
-			node.setNext(new SingleLinkedListNode<T>());
+			node.next = new SingleLinkedListNode<>();
+			node.data = element;
 		}
 	}
 
 	@Override
 	public void remove(T element) {
-		if(!isEmpty()) {
-			if(this.head.data.equals(element)) {
-				this.head = this.head.next;
-			} else {
-				SingleLinkedListNode node = this.head;
-				while(!node.next.isNIL()) {
-					if(node.next.data.equals(element)) {
-						node.setNext(node.next.next);
-						node.setData(node.next.data);
-					} else node = node.next;
-				}
+		if(!isEmpty() && element != null) {
+			SingleLinkedListNode<T> node = this.head;
+			
+			boolean found = false;
+			while(!node.isNIL() && !found) {
+				if(node.data.equals(element)) {
+					node.next = node.next.next;
+					node.data = node.next.data;
+					found = true;
+				} else node = node.next;
 			}
 		}
 	}
@@ -79,10 +82,12 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	@Override
 	public T[] toArray() {
 		ArrayList<T> array = new ArrayList<T>();
+		
 		if(!isEmpty()) {
-			SingleLinkedListNode node = this.head;
+			SingleLinkedListNode<T> node = this.head;
+			
 			while(!node.isNIL()) {
-				array.add((T) node.data);
+				array.add(node.data);
 				node = node.next;
 			}
 		}
