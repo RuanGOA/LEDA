@@ -41,22 +41,11 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends A
    @Override
    public void remove(T element) {
       if (element != null && !isEmpty()) {
-         int hash;
-         int i = 0;
-         boolean founded = false;
-         while (!founded && i < size()) {
-            hash = getHash(element, i);
-
-            if (super.table[hash] == null) {
-               founded = true;
-            } else if (super.table[hash].equals(element)) {
-               founded = true;
-               super.table[hash] = deletedElement;
-               super.COLLISIONS -= i;
-               super.elements--;
-            }
-
-            i++;
+         int hash = indexOf(element);
+         
+         if(hash > -1) {
+        	 super.table[hash] = deletedElement;
+        	 super.elements--;
          }
       }
    }
@@ -87,7 +76,7 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends A
          while (!founded && i < size()) {
             hash = getHash(element, i++);
 
-            if (super.table[hash] == null || super.table[hash].equals(deletedElement)) {
+            if (super.table[hash] == null) {
                founded = true;
             } else if (super.table[hash].equals(element)) {
                result = hash;

@@ -41,23 +41,13 @@ public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable> extend
    @Override
    public void remove(T element) {
       if (element != null && !isEmpty()) {
-         int hash;
-         int i = 0;
-         boolean founded = false;
-         while (!founded && i < size()) {
-            hash = getHash(element, i);
-
-            if (super.table[hash] == null) {
-               founded = true;
-            } else if (super.table[hash].equals(element)) {
-               founded = true;
-               super.table[hash] = deletedElement;
-               super.COLLISIONS -= i;
-               super.elements--;
-            }
-
-            i++;
+         int index = indexOf(element);
+         
+         if(index > -1) {
+        	 super.table[index] = deletedElement;
+        	 super.elements--;
          }
+    	  
       }
    }
 
@@ -87,7 +77,7 @@ public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable> extend
          while (!founded && i < size()) {
             hash = getHash(element, i++);
 
-            if (super.table[hash] == null || super.table[hash].equals(deletedElement)) {
+            if (super.table[hash] == null) {
                founded = true;
             } else if (super.table[hash].equals(element)) {
                result = hash;
