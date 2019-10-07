@@ -73,15 +73,15 @@ public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable> extend
       if (element != null && !isEmpty()) {
          int hash;
          int i = 0;
-         boolean founded = false;
-         while (!founded && i < size()) {
+         boolean found = false;
+         while (!found && i < size()) {
             hash = getHash(element, i++);
 
             if (super.table[hash] == null) {
-               founded = true;
+               found = true;
             } else if (super.table[hash].equals(element)) {
                result = hash;
-               founded = true;
+               found = true;
             }
          }
       }
