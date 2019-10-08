@@ -27,3 +27,23 @@
   <level>FINE</level>
   <message>File 118210616-RUAN GOMES DE OLIVEIRA ALVES.zip was received. It was sent by RUAN GOMES DE OLIVEIRA ALVES from IP 192.168.15.5 at 07-10-2019 19*28*09</message>
 </record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-10-07T23:54:38.646-0300</date>
+  <logger>RUAN GOMES DE OLIVEIRA ALVES</logger>
+  <level>FINE</level>
+  <message>File 118210616-RUAN GOMES DE OLIVEIRA ALVES.zip was received. It was sent by RUAN GOMES DE OLIVEIRA ALVES from IP 192.168.15.5 at 07-10-2019 23*54*38</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-10-07T23:55:02.745-0300</date>
+  <logger>RUAN GOMES DE OLIVEIRA ALVES</logger>
+  <level>FINE</level>
+  <message>File 118210616-RUAN GOMES DE OLIVEIRA ALVES.zip was received. It was sent by RUAN GOMES DE OLIVEIRA ALVES from IP 192.168.15.5 at 07-10-2019 23*55*02</message>
+</record>

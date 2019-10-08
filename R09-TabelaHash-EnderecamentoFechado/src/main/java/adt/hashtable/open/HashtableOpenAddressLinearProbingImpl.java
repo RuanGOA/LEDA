@@ -25,7 +25,7 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends A
          int hash;
          int i = 0;
          boolean inserted = false;
-         while (!inserted) {
+         while(!inserted) {
             hash = getHash(element, i++);
             if (super.table[hash] == null || super.table[hash].equals(deletedElement)) {
                super.table[hash] = element;
@@ -73,7 +73,7 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends A
          int hash;
          int i = 0;
          boolean found = false;
-         while (!found && i < size()) {
+         while (!found && i < super.table.length) {
             hash = getHash(element, i++);
 
             if (super.table[hash] == null) {
