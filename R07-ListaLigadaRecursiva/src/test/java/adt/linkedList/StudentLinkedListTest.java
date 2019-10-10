@@ -6,8 +6,8 @@ import org.junit.Test;
 
 public class StudentLinkedListTest {
 
-	protected LinkedList<Integer> lista1;
-	protected LinkedList<Integer> lista2;
+	protected RecursiveSingleLinkedListImpl<Integer> lista1;
+	protected RecursiveSingleLinkedListImpl<Integer> lista2;
 
 	@Before
 	public void setUp() throws Exception {
