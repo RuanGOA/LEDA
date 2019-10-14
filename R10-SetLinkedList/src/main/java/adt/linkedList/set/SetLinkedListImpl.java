@@ -12,13 +12,18 @@ public class SetLinkedListImpl<T> extends SingleLinkedListImpl<T> implements Set
 		SingleLinkedListNode nodeAux;
 		while(!node.isNIL()) {
 			nodeAux = node.getNext();
+			
 			while(!nodeAux.isNIL()) {
-				
+				if(nodeAux.getData().equals(node.getData())) { //modifique para o proximo
+					nodeAux.setData(nodeAux.getNext().getData());
+					nodeAux.setNext(nodeAux.getNext().getNext());
+				} else { //itere para o proximo
+					if(nodeAux.getNext() != null)
+						nodeAux = nodeAux.getNext();
+				}
 			}
 			
-			
 			node = node.getNext();
-			
 		}
 	}
 	
@@ -46,12 +51,23 @@ public class SetLinkedListImpl<T> extends SingleLinkedListImpl<T> implements Set
 			}
 		}
 		
+		result.removeDuplicates();
+		
 		return result;
 	}
 
 	@Override
 	public void concatenate(SetLinkedList<T> otherSet) {
-		for(T element : otherSet.toArray()) super.insert(element);
+		SingleLinkedListNode<T> last = this.getHead();
+
+		while (!last.isNIL()) {
+			last = last.getNext();
+		}
+
+		last.setData(((SingleLinkedListImpl<T>) otherSet).getHead().getData());
+		last.setNext(((SingleLinkedListImpl<T>) otherSet).getHead().getNext());
+
+		this.removeDuplicates();
 	}
 
 }
