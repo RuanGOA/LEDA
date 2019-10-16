@@ -55,6 +55,24 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 			this.last.next = new DoubleLinkedListNode();
 		}
 	}
+	
+	@Override
+	public void revert() {
+		DoubleLinkedListNode tail = this.last;
+		DoubleLinkedListNode aux = new DoubleLinkedListNode();
+		DoubleLinkedListNode ped = new DoubleLinkedListNode();
+		while(!tail.isNIL()) {
+			aux = tail.previous;
+			tail.previous = ped;
+			tail.next = aux;
+			ped = tail;
+			tail = aux;			
+		}
+		
+		aux = this.last;
+		this.last = (DoubleLinkedListNode<T>) this.head;
+		this.head = aux;
+	}
 
 	public DoubleLinkedListNode<T> getLast() {
 		return last;

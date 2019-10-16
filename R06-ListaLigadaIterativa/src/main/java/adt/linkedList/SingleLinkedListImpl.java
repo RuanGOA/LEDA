@@ -103,4 +103,19 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 		this.head = head;
 	}
 
+	public void revert() {
+		SingleLinkedListNode hed = this.getHead();
+		SingleLinkedListNode ped = new SingleLinkedListNode(); 
+		SingleLinkedListNode aux = null;
+		
+		while(!hed.isNIL()) {
+			aux = hed.getNext();
+			hed.setNext(ped);
+			ped = hed;
+			hed = aux;
+		}
+		
+		this.head = ped;
+	}
+
 }
