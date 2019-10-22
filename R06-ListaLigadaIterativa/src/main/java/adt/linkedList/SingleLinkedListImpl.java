@@ -95,6 +95,25 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 		return (T[]) array.toArray();
 	}
 
+	public void insertIn(int k, T element) {
+		if(element != null) {
+			if(k <= 0) {
+				SingleLinkedListNode<T> newNode = new SingleLinkedListNode(element, this.head);
+				this.head = newNode;
+			} else {		
+				SingleLinkedListNode<T> aux = this.head;
+				int i = 0;
+				while(i + 1 < k && !aux.next.isNIL()) {
+					aux = aux.next;
+					i++;
+				}
+				
+				SingleLinkedListNode<T> newNode = new SingleLinkedListNode(element, aux.next);
+				aux.next = newNode;	
+			}
+		}
+	}
+	
 	public SingleLinkedListNode<T> getHead() {
 		return head;
 	}
